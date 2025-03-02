@@ -11,7 +11,6 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 }
 
-// Typing Text Code
 
 const typed = new Typed('.multiple-text', {
     strings: ['Frontend Developer', 'Backend Developer', 'Blockchain Developer', 'Web Designer', 'Photographer'],
