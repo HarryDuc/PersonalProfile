@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Lay dia chi ip cua nguoi dung</h1>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                console.log("Trình duyệt không hỗ trợ Geolocation.");
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            console.log(`Vị trí của bạn: Latitude: ${latitude}, Longitude: ${longitude}`);
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("Người dùng từ chối quyền truy cập vị trí.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log("Thông tin vị trí không khả dụng.");
+                    break;
+                case error.TIMEOUT:
+                    console.log("Hết thời gian yêu cầu vị trí.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log("Lỗi không xác định.");
+                    break;
+            }
+        }
+
+        // Gọi hàm để lấy vị trí khi tải trang
+        getLocation();
+
+    </script>
+</body>
+
+</html>

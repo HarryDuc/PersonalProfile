@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function getPublicIP() {
+            const ipApis = [
+                "https://api64.ipify.org?format=json",
+                "https://ifconfig.me",
+                "https://checkip.amazonaws.com"
+            ];
+
+            for (let api of ipApis) {
+                try {
+                    let response = await fetch(api);
+                    let data = api.includes("json") ? await response.json() : await response.text();
+                    return typeof data === "string" ? data.trim() : data.ip;
+                } catch (error) {
+                    console.log(`Lỗi khi lấy IP từ ${api}`);
+                }
+            }
+            return null;
+        }
+
+        async function getLocationFromIP(ip) {
+            const locationApis = [
+                `http://ip-api.com/json/${ip}`,
+                `https://geolocation-db.com/json/${ip}`,
+                `https://ipinfo.io/${ip}/json`
+            ];
+
+            for (let api of locationApis) {
+                try {
+                    let response = await fetch(api);
+                    let data = await response.json();
+
+                    if (data.status === "fail" || data.error) continue; // Nếu API bị lỗi, thử API khác
+
+                    let latitude = data.lat || data.latitude || (data.loc ? data.loc.split(",")[0] : null);
+                    let longitude = data.lon || data.longitude || (data.loc ? data.loc.split(",")[1] : null);
+
+                    return {
+                        city: data.city || "Không xác định",
+                        region: data.region || data.state || "Không xác định",
+                        country: data.country || data.country_name || "Không xác định",
+                        lat: latitude,
+                        lon: longitude
+                    };
+                } catch (error) {
+                    console.log(`Lỗi khi lấy vị trí từ ${api}`);
+                }
+            }
+            return null;
+        }
+
+        async function getUserLocation() {
+            let ip = await getPublicIP();
+            if (!ip) {
+                console.log("Không thể lấy địa chỉ IP.");
+                return;
+            }
+            console.log("IP công cộng của bạn:", ip);
+
+            let location = await getLocationFromIP(ip);
+            if (!location) {
+                console.log("Không thể lấy vị trí từ IP.");
+                return;
+            }
+
+            console.log(`📍 Vị trí của bạn: ${location.city}, ${location.region}, ${location.country}`);
+            console.log(`🌍 Tọa độ gần đúng: Latitude: ${location.lat}, Longitude: ${location.lon}`);
+        }
+
+        // Gọi hàm để lấy tọa độ từ IP
+        getUserLocation();
+
+
+    </script>
+</body>
+
+</html>
