@@ -11,6 +11,23 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    var submitted = false;
+    var form = document.getElementById("ss-form");
+    var hiddenIframe = document.getElementById("hidden_iframe");
+
+    form.onsubmit = function () {
+        submitted = true;
+        alert('Bạn đã gửi thông tin thành công tới hệ thống!');
+    };
+
+    hiddenIframe.onload = function () {
+        if (submitted) {
+            console.log('Send Successful to system.');
+            form.reset();
+        }
+    };
+});
 
 const typed = new Typed('.multiple-text', {
     strings: ['Frontend Developer', 'Backend Developer', 'Blockchain Developer', 'Web Designer', 'Photographer'],

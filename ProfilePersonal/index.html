@@ -24,8 +24,6 @@
 
     <link rel="stylesheet" type="text/css" href="assets/vendor/owl-carousel/owl.carousel.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-
     <link rel="stylesheet" type="text/css" href="assets/vendor/nice-select/css/nice-select.css">
 
     <link rel="stylesheet" type="text/css" href="assets/vendor/fancybox/css/jquery.fancybox.min.css">
@@ -33,7 +31,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/virtual.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/topbar.virtual.css">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -63,34 +63,36 @@
                 in Nam
                 Dinh and
                 am now studying and living in Ho Chi Minh City.</p>
-                <span class="theme-red">
-                    <ul class="theme-list">
-                        <li><b>From:</b> Nam Dinh</li>
-                        <li><b>Lives In:</b> Tan Phu, Ho Chi Minh city</li>
-                        <li><b>Age:</b> <div id="myAge"></div></li>
-                        <li><b>Gender:</b> Male</li>
-                    </ul>
-                </span>
-                
-                <script>
-                    function calculateAge() {
-                        let today = new Date();
-                        let birth = new Date("2005-11-05");
-                
-                        let age = today.getFullYear() - birth.getFullYear();
-                        let monthDiff = today.getMonth() - birth.getMonth();
-                        let dayDiff = today.getDate() - birth.getDate();
-                
-                        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-                            age--;
-                        }
-                
-                        return age;
+            <span class="theme-red">
+                <ul class="theme-list">
+                    <li><b>From:</b> Nam Dinh</li>
+                    <li><b>Lives In:</b> Tan Phu, Ho Chi Minh city</li>
+                    <li><b>Age:</b>
+                        <div id="myAge"></div>
+                    </li>
+                    <li><b>Gender:</b> Male</li>
+                </ul>
+            </span>
+
+            <script>
+                function calculateAge() {
+                    let today = new Date();
+                    let birth = new Date("2005-11-05");
+
+                    let age = today.getFullYear() - birth.getFullYear();
+                    let monthDiff = today.getMonth() - birth.getMonth();
+                    let dayDiff = today.getDate() - birth.getDate();
+
+                    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                        age--;
                     }
-                
-                    document.getElementById("myAge").innerText = calculateAge();
-                </script>
-                
+
+                    return age;
+                }
+
+                document.getElementById("myAge").innerText = calculateAge();
+            </script>
+
             <div class="social-media">
                 <a href="https://www.facebook.com/vuminhduc.dev"><i class='bx bxl-facebook'></i></a>
                 <a href="https://github.com/HarryDuc"><i class='bx bxl-github'></i></a>
@@ -339,25 +341,28 @@
     <section class="contact" id="contact">
 
         <h2 class="heading">Contact <span>Me</span></h2>
-
-        <form action="#">
+        <iframe id="hidden_iframe" name="hidden_iframe" style="display: none;"></iframe>
+        <form target="hidden_iframe" class="text-left" role="form" id="ss-form" method="GET"
+            action="https://script.google.com/macros/s/AKfycbwWjMxBjDjLD-RYhHNnRGOlc2qkHvcA6YXr9df-P7ETdvnRbinSRg-Bho9c26RE0gqO/exec">
             <div class="input-box">
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email Address">
+                <input title="" required="" class="form-control" placeholder="Full Name" dir="auto" id="FullName"
+                    value="" name="FullName" type="text">
+                <input title="" required="" class="form-control" placeholder="Email" dir="auto" id="Email" value=""
+                    name="Email" type="email">
             </div>
             <div class="input-box">
-                <input type="number" placeholder="Phone Number">
-                <input type="text" placeholder="Email Subject">
+                <input type="number" id="Phone" name="Phone" placeholder="Phone Number (optional)">
+                <input type="text" id="EmailSubject" name="EmailSubject" placeholder="Email Subject (optional)">
             </div>
 
-            <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <textarea name="Message" id="Message" cols="30" rows="10" placeholder="Your Message" dir="auto"></textarea>
 
-            <input type="submit" value="Send Message" class="btn">
+            <input class="btn-submit" id="ss-submit" value="Send Message" name="submit" type="submit">
+
         </form>
 
     </section>
 
-    <!-- Footer Section Code -->
 
     <footer class="footer">
         <div class="social">
@@ -369,7 +374,7 @@
         </div>
 
         <p class="copyright">
-            &copy; Mark Junior | All Rights Reserved
+            &copy; Vu Minh Duc | All Rights Reserved
         </p>
     </footer>
 
@@ -378,8 +383,6 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/vendor/owl-carousel/owl.carousel.min.js"></script>
-
-    <script src="assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 
     <script src="assets/vendor/isotope/isotope.pkgd.min.js"></script>
 
@@ -393,14 +396,10 @@
 
     <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
 
-    <script src="assets/js/google-maps.js"></script>
-
     <script src="assets/js/topbar-virtual.js"></script>
 
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
-
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
     <script src="script.js"></script>
 </body>
 
